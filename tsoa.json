@@ -1,0 +1,55 @@
+{
+    "entryFile": "src/handlers/rest.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": [
+        "src/example/api/*.ts"
+    ],
+    "spec": {
+        "outputDirectory": ".",
+        "specVersion": 3,
+        "name": "Boilerplate",
+        "specFileBaseName": "OpenAPI",
+        "spec": {
+            "servers": [
+                {
+                    "url": "https://test.com/",
+                    "description": "Testing server"
+                }
+            ],
+            "info": {
+                "title": "API Documentation for the Testing App",
+                "version": "1.0",
+                "description": "These APIs allow developers to manage the Testing API.",
+                "contact": {
+                    "name": "Hugo Tilano"
+                }
+            },
+            "tags": [
+                {
+                    "name": "Testing",
+                    "description": "Testing App"
+                }
+            ]
+        },
+        "rootSecurity": [
+            {
+                "Bearer_Token": []
+            }
+        ],
+        "securityDefinitions": {
+            "Bearer_Token": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Secure token used for auth"
+            }
+        }
+    },
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        }
+    }
+}

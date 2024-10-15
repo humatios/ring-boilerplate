@@ -1,0 +1,33 @@
+service: example-serverless
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  esbuild:
+    minify: false
+    bundle: true
+    platform: 'node'
+    target: 'node20'
+    sourcemap: linked
+    keepNames: true
+    watch:
+      pattern: (./src/\*_/_.(ts)|(./\*_/_.(json)))
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  timeout: 600
+
+functions:
+  example:
+    handler: src/handlers/rest.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true

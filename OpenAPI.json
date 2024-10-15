@@ -1,0 +1,222 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Pick_BaseExample.Exclude_keyofBaseExample.position__": {
+				"properties": {
+					"identifier": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"available": {
+						"type": "boolean"
+					},
+					"createDate": {
+						"type": "string"
+					},
+					"modifyDate": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"identifier",
+					"message",
+					"available",
+					"createDate",
+					"modifyDate"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_BaseExample.position_": {
+				"$ref": "#/components/schemas/Pick_BaseExample.Exclude_keyofBaseExample.position__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"ResponseExampleDto": {
+				"properties": {
+					"identifier": {
+						"type": "string",
+						"description": "Example message"
+					},
+					"message": {
+						"type": "string",
+						"description": "Example message"
+					},
+					"available": {
+						"type": "boolean",
+						"description": "Is the message available."
+					},
+					"createDate": {
+						"type": "string",
+						"description": "Creation date."
+					},
+					"modifyDate": {
+						"type": "string",
+						"description": "Last modified date."
+					}
+				},
+				"required": [
+					"identifier",
+					"message",
+					"available",
+					"createDate",
+					"modifyDate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_BaseExample.Exclude_keyofBaseExample.identifier-or-createDate-or-modifyDate-or-available__": {
+				"properties": {
+					"position": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_BaseExample.identifier-or-createDate-or-modifyDate-or-available_": {
+				"$ref": "#/components/schemas/Pick_BaseExample.Exclude_keyofBaseExample.identifier-or-createDate-or-modifyDate-or-available__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"Partial_Pick_BaseExample.available__": {
+				"properties": {
+					"available": {
+						"type": "boolean"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"CreateExampleDto": {
+				"properties": {
+					"message": {
+						"type": "string",
+						"description": "Example message"
+					},
+					"position": {
+						"type": "number",
+						"format": "double",
+						"description": "Position of the message."
+					},
+					"available": {
+						"type": "boolean",
+						"description": "Is the message available."
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"Bearer_Token": {
+				"type": "http",
+				"scheme": "bearer",
+				"description": "Secure token used for auth"
+			}
+		}
+	},
+	"info": {
+		"title": "API Documentation for the Testing App",
+		"version": "1.0",
+		"description": "These APIs allow developers to manage the Testing API.",
+		"contact": {
+			"name": "Hugo Tilano"
+		}
+	},
+	"paths": {
+		"/v1/example": {
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseExampleDto"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"Bearer_Token": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateExampleDto"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v1/example/{identifier}": {
+			"get": {
+				"operationId": "GetOne",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseExampleDto"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"Bearer_Token": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "identifier",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "https://test.com/",
+			"description": "Testing server"
+		}
+	],
+	"tags": [
+		{
+			"name": "Testing",
+			"description": "Testing App"
+		}
+	]
+}

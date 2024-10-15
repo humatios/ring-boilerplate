@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "lib": [
+            "ES2023",
+            "DOM"
+        ],
+        "target": "ES2022",
+        "outDir": "./.build",
+        "types": [
+            "node",
+            "jest"
+        ],
+        "rootDirs": [
+            "."
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictPropertyInitialization": false,
+        "allowJs": true
+    },
+    "exclude": [
+        "coverage"
+    ]
+}
